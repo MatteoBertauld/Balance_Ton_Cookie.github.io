@@ -17,3 +17,33 @@ setTimeout(() => {
         cookieBtn.style.transform = 'scale(1) rotate(0deg)';
     }, 50);
 });
+
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){
+	dataLayer.push(arguments);
+}
+gtag('consent', 'default', {
+	'ad_storage': 'denied',
+	'ad_user_data': 'denied',
+	'ad_personalization': 'denied',
+	'analytics_storage': 'denied'
+});
+
+
+function setConsent() {
+    setCookie("user_consent", "accepted", 30);
+    
+    // Cacher la bannière
+   // document.getElementById('cookie-banner').style.display = 'none';
+    
+    // Charger les scripts de suivi maintenant que c'est accepté
+    //startTracking();
+}
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
