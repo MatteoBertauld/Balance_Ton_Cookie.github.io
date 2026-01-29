@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f3e5ab; /* Couleur crème */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.stats {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #5d4037;
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+#counter {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #8d6e63;
+}
+
+/* Le Cookie */
+.cookie-container {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.1s;
+    user-select: none;
+}
+
+#cookie-img {
+    width: 250px;
+    height: 250px;
+    background-color: #c5a059;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2), 
+                inset -10px -10px 15px rgba(0,0,0,0.1);
+    border: 8px solid #8d6e63;
+}
+
+/* Animation au clic */
+.cookie-container:active {
+    transform: scale(0.95);
+}
+
+/* Responsive - Le cookie s'adapte aux petits écrans */
+@media (max-width: 480px) {
+    #cookie-img {
+        width: 180px;
+        height: 180px;
+        font-size: 4rem;
+    }
+    h1 { font-size: 1.5rem; }
+}
