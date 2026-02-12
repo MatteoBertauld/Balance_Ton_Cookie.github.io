@@ -43,6 +43,7 @@
             <a class="hover:text-primary transition-colors" href="#hero">Intro</a>
             <a class="hover:text-primary transition-colors" href="#simulation">Simulation</a>
             <a class="hover:text-primary transition-colors" href="#education">Éducation</a>
+            <a class="hover:text-primary transition-colors" href="ressources.html">Ressources</a>
         </div>
     </nav>
 </header>
@@ -80,14 +81,14 @@
         </div>
     </div>
 </section>
-<section class="h-screen section-v flex items-center justify-center px-10 md:px-20 bg-slate-50" id="simulation">
+<section class=" section-v flex items-center justify-center px-10 md:px-20 bg-slate-50" id="simulation">
     <div class="max-w-[1600px] mx-auto w-full h-full grid lg:grid-cols-[400px_1fr] gap-12">
         <div class="bg-white border-2 border-slate-900 rounded-[40px] m-10 mb-15 p-10 flex flex-col box-border shadow-[10px_10px_0px_0px_rgba(15,23,42,1)]">
             <div class="mb-10">
                 <h2 class="text-3xl font-display font-bold mb-4">Préférences</h2>
                 <p class="text-sm text-slate-500 leading-relaxed">Activez les modules pour voir les données générées en temps réel dans le tableau de bord.</p>
             </div>
-            <div class="space-y-8 flex-1">
+            <div class="space-y-3 flex-1">
                 <div class="flex items-center justify-between gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
                     <div class="flex-1">
                         <h4 class="font-bold text-sm">Nécessaire</h4>
@@ -99,23 +100,53 @@
                         </div>
                     </label>
                 </div>
-                <div class="flex items-center justify-between gap-4 p-4 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all">
+                <div class="flex items-center justify-between gap-4 p-4 rounded-2xl hover:bg-amber-50 border border-transparent hover:border-slate-100 transition-all">
                     <div class="flex-1">
-                        <h4 class="font-bold text-sm">Analytiques</h4>
-                        <p class="text-[10px] text-slate-400">Statistiques d'utilisation</p>
+                        <h4 class="font-bold text-amber-400 text-sm">Analytiques</h4>
+                        <p class="text-[10px] text-amber-400">Statistiques d'utilisation</p>
                     </div>
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input class="sr-only peer" id="toggle-analytics" onchange="setConsent(null)" type="checkbox"/>
                         <div class="w-12 h-7 bg-slate-200 rounded-full peer peer-checked:bg-amber-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:after:translate-x-5"></div>
                     </label>
                 </div>
-                <div class="flex items-center justify-between gap-4 p-4 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all">
+                <div class="flex items-center justify-between gap-4 p-4 rounded-2xl hover:bg-purple-50 border border-transparent hover:border-slate-100 transition-all">
                     <div class="flex-1">
-                        <h4 class="font-bold text-sm">Marketing</h4>
-                        <p class="text-[10px] text-slate-400">Publicité &amp; Ciblage</p>
+                        <h4 class="font-bold text-purple-400 text-sm">Marketing</h4>
+                        <p class="text-[10px] text-purple-400">Publicité &amp; Ciblage</p>
                     </div>
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input class="sr-only peer" id="toggle-marketing" onchange="setConsent(null)" type="checkbox"/>
+                        <div class="w-12 h-7 bg-slate-200 rounded-full peer peer-checked:bg-purple-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:after:translate-x-5"></div>
+                    </label>
+                </div>
+                <div class="flex items-center justify-between gap-4 p-4 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-grey-400 text-sm">Réglage</h4>
+                        <p class="text-[10px] text-grey-400">Parametre de l'utilisateur</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input class="sr-only peer" id="toggle-setting" onchange="setConsent(null)" type="checkbox"/>
+                        <div class="w-12 h-7 bg-slate-200 rounded-full peer peer-checked:bg-grey-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:after:translate-x-5"></div>
+                    </label>
+                </div>
+                <div class="flex items-center justify-between gap-4 p-4 rounded-2xl hover:bg-blue-50 border border-transparent hover:border-slate-100 transition-all">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-blue-400 text-sm">Réseaux</h4>
+                        <p class="text-[10px] text-blue-400">Fonctionnalités de partage et de suivi</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input class="sr-only peer" id="toggle-social" onchange="setConsent(null)" type="checkbox"/>
+                        <div class="w-12 h-7 bg-slate-200 rounded-full peer peer-checked:bg-blue-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:after:translate-x-5"></div>
+                    </label>
+                </div>
+                <div class="flex items-center justify-between gap-4 p-4 rounded-2xl hover:bg-red-50 border border-transparent hover:border-slate-100 transition-all">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-red-400 text-sm">Sécurité</h4>
+                        <p class="text-[10px] text-red-400">Anti DDOS, Captcha</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input class="sr-only peer" id="toggle-security" onchange="setConsent(null)" type="checkbox"/>
                         <div class="w-12 h-7 bg-slate-200 rounded-full peer peer-checked:bg-red-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:after:translate-x-5"></div>
                     </label>
                 </div>
@@ -148,7 +179,6 @@
                             <th class="p-8">Fournisseur</th>
                             <th class="p-8">Finalité</th>
                             <th class="p-8 text-center">Durée</th>
-                            <th class="p-8 text-right">Impact</th>
                         </tr>
                     </thead>
                     <tbody id="cookie-table-body">
@@ -189,7 +219,7 @@
                     <span class="material-symbols-outlined mb-3 block text-rose-500 group-hover:text-rose-400">campaign</span>
                     <span class="font-bold text-sm">Marketing</span>
                 </button>
-                <button class="group p-5 bg-slate-50 rounded-[24px] hover:bg-slate-900 hover:text-white transition-all text-left border border-slate-100" onclick="showDetail('preferences')">
+                <button class="group p-5 bg-slate-50 rounded-[24px] hover:bg-slate-900 hover:text-white transition-all text-left border border-slate-100" onclick="showDetail('setting')">
                     <span class="material-symbols-outlined mb-3 block text-emerald-500 group-hover:text-emerald-400">settings</span>
                     <span class="font-bold text-sm">Réglages</span>
                 </button>
