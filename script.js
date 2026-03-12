@@ -37,21 +37,17 @@ function createCookieRow(cookie) {
             
         </tr>`;
 }
-/*
-<td class="p-8 text-right font-medium text-${impactColors[cookie.impact]}-500">
-    ${cookie.impact}
-</td>
-*/
+
 
 function renderCookieTable() {
-    const tableBody = document.querySelector('#cookie-table-body');
-    const isAnalytics = document.getElementById('toggle-analytics').checked;
-    const isMarketing = document.getElementById('toggle-marketing').checked;
-    const isSocial = document.getElementById('toggle-social').checked;
-    const isSetting = document.getElementById('toggle-setting').checked;
-    const isSecurity = document.getElementById('toggle-security').checked;
 
-    const filters = { analytics: isAnalytics, marketing: isMarketing, social:isSocial,setting:isSetting,security:isSecurity};
+
+    const tableBody = document.querySelector('#cookie-table-body');
+    const isStatistic = document.getElementById('toggle-statistic').checked;
+    const isPreferences =  document.getElementById('toggle-preferences').checked;
+    const isMarketing = document.getElementById('toggle-marketing').checked;
+
+    const filters = { analytics: isStatistic, preferences: isPreferences, marketing:isMarketing};
     
     let htmlContent = cookieData
         // On garde le système avec cequi est coché dans les filtres
@@ -64,22 +60,6 @@ function renderCookieTable() {
 }
 
 
-function showDetail(category) {
-    const data = cookieDetails[category];
-    document.getElementById('det-finalite').innerText = data.finalite;
-    document.getElementById('det-type').innerText = data.type;
-    document.getElementById('det-donnees').innerText = data.donnees;
-    document.getElementById('det-duree').innerText = data.duree;
-    document.getElementById('det-stockage').innerText = data.stockage;
-    document.getElementById('det-impact').innerText = data.impact;
-    document.getElementById('det-consentement').innerText = data.consentement;
-    // Visual feedback for interaction
-    const panel = document.getElementById('detail-panel');
-    panel.classList.remove('animate-none');
-    panel.style.animation = 'none';
-    panel.offsetHeight;
-    panel.style.animation = null; 
-};
 
 
 
@@ -109,46 +89,35 @@ function getCookie(cname) {
 function setConsent(acceptAll) {
 
     clearAllCookies();
-    ButtonAnalytics = document.getElementById('toggle-analytics');
+    ButtonStatistic = document.getElementById('toggle-statistic');
+    ButtonPreferences = document.getElementById('toggle-preferences');
     ButtonMarketing = document.getElementById('toggle-marketing');
-    ButtonSocial = document.getElementById('toggle-social');
-    ButtonSetting = document.getElementById('toggle-setting');
-    ButtonSecurity = document.getElementById('toggle-security');
 
-    let isAnalytics = false;
+    let isStatistic = false;
+    let isPreferences = false;
     let isMarketing = false;
-    let isSocial = false;
-    let isSetting = false;
-    let isSecurity = false;
+
     if(acceptAll) {
-        isAnalytics = true;
-        isMarketing = true;
-        isSocial = true;
-        isSetting = true;
-        isSecurity = true;
+        isStatistic = true;
+        isPreferences = true;
+        isMarketing = true
     }
     if(acceptAll == null) {
-        isAnalytics = ButtonAnalytics.checked;
+        isStatistic = ButtonStatistic.checked;
+        isPreferences = ButtonPreferences.checked;
         isMarketing = ButtonMarketing.checked;
-        isSocial = ButtonSocial.checked;
-        isSetting = ButtonSetting.checked;
-        isSecurity = ButtonSecurity.checked;
     }
 
-    ButtonAnalytics.checked = isAnalytics;
+    ButtonStatistic.checked = isStatistic;
+    ButtonPreferences.checked = isPreferences;
     ButtonMarketing.checked = isMarketing;
-    ButtonSocial.checked = isSocial;
-    ButtonSetting.checked = isSetting;
-    ButtonSecurity.checked = isSecurity;
 
 
 
     setCookie("consent_timestamp", new Date().toISOString(), 30); 
-    setCookie("user_analytics", isAnalytics ? 'granted' : 'denied', 30); 
-    setCookie("user_marketing", isMarketing ? 'granted' : 'denied', 30); 
-    setCookie("user_setting", isSetting ? 'granted' : 'denied', 30); 
-    setCookie("user_social", isSocial ? 'granted' : 'denied', 30); 
-    setCookie("user_security", isSecurity ? 'granted' : 'denied', 30); 
+    setCookie("user_statistic", isStatistic ? 'granted' : 'denied', 30); 
+    setCookie("user_preferences", isPreference ? 'granted' : 'denied', 30); 
+    setCookie("user_marketing", isMarketing ? 'granted' : 'denied', 30);  
 
     console.log("Consentement mis à jour :\n" + document.cookie);
 
@@ -200,61 +169,34 @@ function handleSubmit() {
 
 
 const cookieDetails = {
-    necessary: {
-        finalite: "Sécurité et fonctions de base",
-        type: "Interne / Système",
-        donnees: "ID de session chiffré",
-        duree: "Session",
-        stockage: "Navigateur",
-        impact: "Nul",
+    Necessaire: {
+        Utility: "Assurer la sécurité, la gestion de la session et la mémorisation de vos choix de confidentialité.",
+        donnees: "Identifiant de session, statut du consentement (autorisé/refusé).",
+        duree: "Session (fermeture du navigateur) ou Persistant",
+        Origine : "Interne (site web)",
         consentement: "Non (Exempté)"
     },
-    marketing: {
-        finalite: "Profilage publicitaire",
-        type: "Cookie Tiers (AdNetwork)",
-        donnees: "Centres d'intérêt, Historique",
-        duree: "30 jours",
-        stockage: "Base de données tiers",
-        impact: "Élevé",
-        consentement: "Oui"
-    },
-    analytics: {
-        finalite: "Analyse d'audience",
-        type: "Mesure statistique",
-        donnees: "Clics, Temps passé, Parcours",
-        duree: "13 mois",
-        stockage: "Cloud / Dashboard",
-        impact: "Faible",
-        consentement: "Oui"
+    Statistic: {
+        Utility: "Compter le nombre de visiteurs et identifier les pages les plus lues ou les bugs.",
+        donnees: "Adresse IP (anonymisée), type de navigateur, temps passé par page.",
+        duree: "Persistant",
+        Origine : "Interne (site web) ou Tier",
+        consentement: "Non (Recommandé)"
     },
     preferences: {
-        finalite: "Personnalisation UI",
-        type: "Préférences locales",
-        donnees: "Langue, Mode sombre, Filtres",
-        duree: "1 an",
-        stockage: "Local storage",
-        impact: "Nul",
+        Utility: "Personnaliser l'affichage selon vos réglages (langue, mode sombre, région).",
+        donnees: "Code pays, préférence d'affichage (CSS), dernière recherche effectuée.",
+        duree: "Persistant.",
+        Origine : "Souvent Interne (site web)",
         consentement: "Oui"
     },
-    social: {
-        finalite: "Interaction réseaux sociaux",
-        type: "Pixel de tracking",
-        donnees: "Profil social, Partages",
-        duree: "2 ans",
-        stockage: "Serveurs externes",
-        impact: "Élevé",
+    marketing: {
+        Utility: "Assurer la sécurité, la gestion de la session et la mémorisation de vos choix de confidentialité.",
+        donnees: "Identifiant de session, statut du consentement (autorisé/refusé).",
+        duree: "Session (fermeture du navigateur) ou 6 mois (pour votre choix de cookies).",
+        Origine : "Souvent service tier",
         consentement: "Oui"
-    },
-    security: {
-        finalite: "Prévention de la fraude",
-        type: "Sécurité anti-robot",
-        donnees: "Signature hardware, IP",
-        duree: "Indéfini",
-        stockage: "Hybride",
-        impact: "Moyen",
-        consentement: "Oui"
-    },
-    
+    },    
 };
 
 
@@ -389,3 +331,136 @@ const cookieData = [
     }
 ];
 renderCookieTable();
+
+
+
+
+const content = {
+    "0": {
+        title: "Canada",
+
+        def: {
+            Necessaire: "Aucune définition au Canada.",
+            Statistic: "Aucune définition au Canada.",      
+            preferences: "Aucune définition au Canada.", 
+            marketing: "Aucune définition au Canada."   
+        },
+
+        Necessaire: "Strictement Necessaire",
+        Statistic: "Analytique",
+        Preference: "Functionnel",
+        Marketing: "Marketing",
+
+    },
+    "1": {
+        title: "Royaume-Uni",
+
+        def: {
+            Necessaire: "These cookies are essential in order to enable you to move around the website and use its features, such as accessing secure areas of the website. Without these cookies services you have asked for, like shopping baskets or e-billing, cannot be provided.",
+            Statistic: "These cookies collect information about how visitors use a website. These cookies don’t collect information that identifies a visitor. All information these cookies collect is aggregated and therefore anonymous. It is only used to improve how a website works.",        
+            preferences:"These cookies allow the website to remember choices you make (such as your user name, language or the region you are in) and provide enhanced, more personal features. The information these cookies collect may be anonymised and they cannot track your browsing activity on other websites.",   
+            marketing: "These cookies are used to deliver adverts more relevant to you and your interests They are also used to limit the number of times you see an advertisement as well as help measure the effectiveness of the advertising campaigns. They are usually placed by advertising networks with the website operator’s permission.",   
+        },
+    
+        Necessaire: "Strictly necessary",
+        Statistic: "Performance",
+        Preference: "Functionnality",
+        Marketing: "Advertising",
+    },
+    "2": {
+        title: "Union Européenne",
+
+        def: {
+            Necessaire: "These cookies are essential for you to browse the website and use its features, such as accessing secure areas of the site. Cookies that allow web shops to hold your items in your cart while you are shopping online are an example of strictly necessary cookies. These cookies will generally be first-party session cookies. While it is not required to obtain consent for these cookies, what they do and why they are necessary should be explained to the user.",
+            Statistic: "Also known as “performance cookies,” these cookies collect information about how you use a website, like which pages you visited and which links you clicked on. None of this information can be used to identify you. It is all aggregated and, therefore, anonymized. Their sole purpose is to improve website functions. This includes cookies from third-party analytics services as long as the cookies are for the exclusive use of the owner of the website visited.",        
+            preferences: "Also known as “functionality cookies,” these cookies allow a website to remember choices you have made in the past, like what language you prefer, what region you would like weather reports for, or what your user name and password are so you can automatically log in.",   
+            marketing: "These cookies track your online activity to help advertisers deliver more relevant advertising or to limit how many times you see an ad. These cookies can share that information with other organizations or advertisers. These are persistent cookies and almost always of third-party provenance.",   
+        },
+
+        Necessaire: "Strictly necessary ",
+        Statistic: "Statistics",
+        Preference: "Preference",
+        Marketing: "Marketing",
+    },
+    "3": {
+        title: "France",
+
+        def: {
+            Necessaire: "Pas de définition francaise (UE) : Also known as “performance cookies,” these cookies collect information about how you use a website, like which pages you visited and which links you clicked on. None of this information can be used to identify you. It is all aggregated and, therefore, anonymized. Their sole purpose is to improve website functions. This includes cookies from third-party analytics services as long as the cookies are for the exclusive use of the owner of the website visited.",
+            Statistic: "Pas de définition francaise (UE) : Also known as “functionality cookies,” these cookies allow a website to remember choices you have made in the past, like what language you prefer, what region you would like weather reports for, or what your user name and password are so you can automatically log in.",
+            preferences: "Pas de définition francaise (UE) : These cookies track your online activity to help advertisers deliver more relevant advertising or to limit how many times you see an ad. These cookies can share that information with other organizations or advertisers. These are persistent cookies and almost always of third-party provenance.",   
+            marketing: "Pas de définition francaise (UE) : These cookies track your online activity to help advertisers deliver more relevant advertising or to limit how many times you see an ad. These cookies can share that information with other organizations or advertisers. These are persistent cookies and almost always of third-party provenance.",      
+        },
+
+        Necessaire: "Strictement Necessaire",
+        Statistic: "Statistiques",
+        Preference: "Préférences",
+        Marketing: "Marketing",
+    }
+};
+
+const slider = document.getElementById('step-slider')
+
+const TextCatNecessaire = document.querySelectorAll('.Necessaire');
+const TextCatStatistic = document.querySelectorAll('.Statistic');
+const TextCatPreference = document.querySelectorAll('.Preference');
+const TextCatMarketing = document.querySelectorAll('.Marketing');
+const TextDefCat = document.querySelectorAll('.def');
+
+const TextCat = document.querySelectorAll('.cookie_category');
+
+function updateContent() {
+    val = slider.value;
+    
+    TextCat.forEach(element => {
+        element.classList.add('opacity-0');
+    });
+
+    setTimeout(() => {
+
+        TextCatNecessaire.forEach(element => {
+            element.innerText = content[val].Necessaire
+        });
+        TextCatStatistic.forEach(element => {
+            element.innerText = content[val].Statistic
+        });
+        TextCatPreference.forEach(element => {
+            element.innerText = content[val].Preference
+        });
+        TextCatMarketing.forEach(element => {
+            element.innerText = content[val].Marketing
+        });
+        
+        TextCat.forEach(element => {
+            element.classList.remove('opacity-0');
+        });
+    }, 250);
+}
+
+
+slider.addEventListener('input', updateContent);
+updateContent();
+
+
+function showDetail(category) {
+    const data = cookieDetails[category];
+    document.getElementById('det-utility').innerText = data.Utility;
+    document.getElementById('det-donnees').innerText = data.donnees;
+    document.getElementById('det-duree').innerText = data.duree;
+    document.getElementById('det-origine').innerText = data.Origine;
+    document.getElementById('det-consentement').innerText = data.consentement;
+    // Visual feedback for interaction
+    const panel = document.getElementById('detail-panel');
+    panel.classList.remove('animate-none');
+    panel.style.animation = 'none';
+    panel.offsetHeight;
+    panel.style.animation = null; 
+
+    TextDefCat.forEach(element => {
+        console.log(content[val].def)
+        console.log(category)
+        element.innerText = content[val].def[category]
+    });
+};
+
+showDetail('Necessaire')

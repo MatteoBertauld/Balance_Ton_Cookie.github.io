@@ -39,7 +39,29 @@
             <span class="material-symbols-outlined text-amber-500 fill-amber-500 text-3xl">cookie</span>
             <span class="font-display font-bold text-2xl tracking-tight">Balance ton Cookie !</span>
         </div>
-        <div class="flex gap-8 text-sm font-bold uppercase tracking-widest text-slate-500">
+        <div class="flex items-center gap-8 text-sm font-bold uppercase tracking-widest text-slate-500">
+            <div class="slider-container ">
+
+                <input class="w-full" type="range" min="0" max="3" value="1" step="1" id="step-slider">
+
+                <div class="labels flex justify-between justify-between w-full">
+                    <div class="flex flex-col items-center w-0 overflow-visible">
+                        <img src="images/flag/Flag_of_Canada.png" alt="Canada" class="min-w-[32px] w-8 h-auto shadow-sm">
+                    </div>
+                    
+                    <div class="flex flex-col items-center w-0 overflow-visible">
+                        <img src="images/flag/Flag_UK.svg" alt="UK" class="min-w-[32px] w-8 h-auto shadow-sm">
+                    </div>
+                    
+                    <div class="flex flex-col items-center w-0 overflow-visible">
+                        <img src="images/flag/Flag_of_Europe.svg" alt="Europe" class="min-w-[32px] w-8 h-auto shadow-sm">
+                    </div>
+
+                    <div class="flex flex-col items-center w-0 overflow-visible">
+                        <img src="images/flag/flag_fr.png" alt="France" class="min-w-[32px] w-8 h-auto shadow-sm">
+                    </div>    
+                </div>
+            </div>
             <a class="hover:text-primary transition-colors" href="#hero">Intro</a>
             <a class="hover:text-primary transition-colors" href="#simulation">Simulation</a>
             <a class="hover:text-primary transition-colors" href="ressources.html">Ressources</a>
@@ -72,25 +94,70 @@
             <div class="absolute inset-0 bg-amber-200/30 blur-[120px] rounded-full"></div>
             <div class="relative w-[500px] h-[500px] bg-white rounded-[60px] shadow-2xl ring-1 ring-slate-200 flex items-center justify-center p-12 group overflow-hidden">
                 <img alt="Large playful cookie image" class="w-full h-full rounded-[60px] object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)] group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM9GWWjqz2f88IlNF_-bRw8I5XJwM87cpw0UK5P4ZGtUos-9258jCXe9ww2NTNc2qqzmYOGIaEH-2SjN_t-vqTgEDAoEuqXqWaqwbJDQn8Lwflw_HvqJ3V75J_tSTJmLhY_YsQkB-8gdDhFv2Dj3W1SmUvuhHuo6BeWO6b1Tx5T9t2CCTAPNwcjZkRp1PsA9vUEaFFWUyvF9AuEJei-sNOLTCh5C1x0cIwcyI0nBuzsAteVr2cL29CLqe3KB98zi4Htv6IvDhBrOw"/>
-                <div class="absolute bottom-10 left-10 right-10 p-6 bg-white/80 backdrop-blur rounded-2xl border border-white/50 shadow-sm">
-                    <p class="text-xs font-bold uppercase text-slate-400 mb-1">Fait amusant</p>
-                    <p class="text-sm font-medium text-slate-700 italic">"Les cookies ne sont pas des programmes. Ils ne peuvent pas effacer de données sur votre ordinateur."</p>
+                <div class="absolute bottom-10 left-10 right-10 p-2 bg-white/80 backdrop-blur rounded-2xl border border-white/50 shadow-sm">
+                    <p class="text-xs font-bold uppercase text-slate-400 mb-1">Confidentialité</p>
+                    <p class="text-sm font-medium text-slate-700 italic">
+                        🔒 Aucune donnée n'est partagée des tiers.<br>
+                        🎓 Usage Pédagogique uniquement.<br>
+                        📂 Open Source consultable sur GitHub.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 <section class=" section-v flex items-center justify-center px-10 md:px-20 bg-slate-50" id="simulation">
+    
+   
+
+    <div id="modal-overlay" 
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        
+        <div class="bg-white rounded-2xl shadow-xl max-w-[1600px] mx-auto w-full p-8 transform transition-all">
+            <div class="text-center">
+                <h3 class="text-xl font-bold text-slate-800 mb-4">À propos de cette Simulation</h3>
+                
+                <p class="text-slate-600 leading-relaxed mb-6">
+                    Les catégories proposées s'appuient sur les recommandations officielles de l'Union Européenne, du Canada et du Royaume-Uni selon la zone sélectionnée (slider en haut de l'ecran)<br>
+                    Bien que ces appellations visent à assurer une cohérence globale, les éditeurs de sites conservent la liberté d'adapter leur terminologie.<br> <br>                
+                    Les données de cookies présentés sont issus de cas réels sur des plateformes existantes, utilisés ici à titre purement illustratif.<br> <br>
+                    
+                    Les durées de conservation affichées sont établies à partir de cas d'usage réels, mis en perspective avec les référentiels de la CNIL. <br>
+                    Quelque soit la reglementation, aucune donnée ne peut être conservée indéfiniment.<br>
+                    Cependant en dehors des obligations spécifiques d'archivage administratif ou légal, Aucune loi n'impose de "date de conservation".<br>
+                    Chaque durée doit être strictement proportionnée à l'objectif poursuivi (finalité) et à la sensibilité des informations collectées.<br>
+                    Il relève de la responsabilité du Responsable de traitement de définir, de justifier et d'appliquer la durée la plus appropriée
+                    </p>
+                
+                <button 
+                    onclick="toggleModal(false)"
+                    class="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-2 rounded-full font-medium transition-colors w-full">
+                    J'ai compris
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div class="max-w-[1600px] mx-auto w-full h-full grid lg:grid-cols-[400px_1fr] gap-12">
-        <div class="bg-white border-2 border-slate-900 rounded-[40px] m-10 mb-15 p-10 flex flex-col box-border shadow-[10px_10px_0px_0px_rgba(15,23,42,1)]">
+        
+
+        <div class="bg-white border-2 max-h-[700px] border-slate-900 rounded-[40px] m-10 mb-15 p-10 flex flex-col box-border shadow-[10px_10px_0px_0px_rgba(15,23,42,1)]">
             <div class="mb-10">
-                <h2 class="text-3xl font-display font-bold mb-4">Préférences</h2>
-                <p class="text-sm text-slate-500 leading-relaxed">Activez les modules pour voir les données générées en temps réel dans le tableau de bord.</p>
+                <h2 class="text-3xl font-display font-bold mb-4 flex items-center gap-3">
+                    <span>Préférences</span>
+                    <button 
+                        onclick="toggleModal(true)"
+                        class="w-8 h-8 rounded-full bg-slate-200 hover:bg-emerald-500 hover:text-white text-slate-600 text-base font-bold transition-all flex items-center justify-center shadow-sm"
+                        title="Aide">
+                        ?
+                    </button>
+                </h2>
+                 
+                <p class="text-sm text-slate-500 leading-relaxed">Activez les modules pour voir les données d'exemple dans le tableau de bord.</p>
             </div>
             <div class="space-y-3 flex-1">
                 <div class="flex items-center justify-between gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
                     <div class="flex-1">
-                        <h4 class="font-bold text-sm">Nécessaire</h4>
+                        <h4 class="font-bold text-sm cookie_category Nécessaire transition-opacity duration-500 ease-in-out">Strictement Necessaire</h4>
                         <p class="text-[10px]">Fixe, non désactivable</p>
                     </div>
                     <label class="relative inline-flex items-center cursor-not-allowed">
@@ -101,52 +168,32 @@
                 </div>
                 <div class="flex items-center justify-between gap-4 p-4 rounded-2xl hover:bg-amber-50 border border-transparent hover:border-slate-100 transition-all">
                     <div class="flex-1">
-                        <h4 class="font-bold text-amber-400 text-sm">Analytiques</h4>
+                        <h4 class="font-bold text-amber-400 text-sm cookie_category Statistic transition-opacity duration-500 ease-in-out">Analytique</h4>
                         <p class="text-[10px] text-amber-400">Statistiques d'utilisation</p>
                     </div>
                     <label class="relative inline-flex items-center cursor-pointer">
-                        <input class="sr-only peer" id="toggle-analytics" onchange="setConsent(null)" type="checkbox"/>
+                        <input class="sr-only peer" id="toggle-statistic" onchange="setConsent(null)" type="checkbox"/>
                         <div class="w-12 h-7 bg-slate-200 rounded-full peer peer-checked:bg-amber-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:after:translate-x-5"></div>
                     </label>
                 </div>
                 <div class="flex items-center justify-between gap-4 p-4 rounded-2xl hover:bg-purple-50 border border-transparent hover:border-slate-100 transition-all">
                     <div class="flex-1">
-                        <h4 class="font-bold text-purple-400 text-sm">Marketing</h4>
+                        <h4 class="font-bold text-purple-400 text-sm cookie_category Preference transition-opacity duration-500 ease-in-out">Functionnel</h4>
                         <p class="text-[10px] text-purple-400">Publicité &amp; Ciblage</p>
                     </div>
                     <label class="relative inline-flex items-center cursor-pointer">
-                        <input class="sr-only peer" id="toggle-marketing" onchange="setConsent(null)" type="checkbox"/>
+                        <input class="sr-only peer" id="toggle-preferences" onchange="setConsent(null)" type="checkbox"/>
                         <div class="w-12 h-7 bg-slate-200 rounded-full peer peer-checked:bg-purple-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:after:translate-x-5"></div>
                     </label>
                 </div>
                 <div class="flex items-center justify-between gap-4 p-4 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all">
                     <div class="flex-1">
-                        <h4 class="font-bold text-grey-400 text-sm">Réglage</h4>
+                        <h4 class="font-bold text-grey-400 text-sm cookie_category Marketing transition-opacity duration-500 ease-in-out">Marketing</h4>
                         <p class="text-[10px] text-grey-400">Parametre de l'utilisateur</p>
                     </div>
                     <label class="relative inline-flex items-center cursor-pointer">
-                        <input class="sr-only peer" id="toggle-setting" onchange="setConsent(null)" type="checkbox"/>
+                        <input class="sr-only peer" id="toggle-marketing" onchange="setConsent(null)" type="checkbox"/>
                         <div class="w-12 h-7 bg-slate-200 rounded-full peer peer-checked:bg-grey-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:after:translate-x-5"></div>
-                    </label>
-                </div>
-                <div class="flex items-center justify-between gap-4 p-4 rounded-2xl hover:bg-blue-50 border border-transparent hover:border-slate-100 transition-all">
-                    <div class="flex-1">
-                        <h4 class="font-bold text-blue-400 text-sm">Réseaux</h4>
-                        <p class="text-[10px] text-blue-400">Fonctionnalités de partage et de suivi</p>
-                    </div>
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input class="sr-only peer" id="toggle-social" onchange="setConsent(null)" type="checkbox"/>
-                        <div class="w-12 h-7 bg-slate-200 rounded-full peer peer-checked:bg-blue-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:after:translate-x-5"></div>
-                    </label>
-                </div>
-                <div class="flex items-center justify-between gap-4 p-4 rounded-2xl hover:bg-red-50 border border-transparent hover:border-slate-100 transition-all">
-                    <div class="flex-1">
-                        <h4 class="font-bold text-red-400 text-sm">Sécurité</h4>
-                        <p class="text-[10px] text-red-400">Anti DDOS, Captcha</p>
-                    </div>
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input class="sr-only peer" id="toggle-security" onchange="setConsent(null)" type="checkbox"/>
-                        <div class="w-12 h-7 bg-slate-200 rounded-full peer peer-checked:bg-red-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:after:translate-x-5"></div>
                     </label>
                 </div>
             </div>
@@ -205,30 +252,22 @@
                 <h2 class="text-5xl font-display font-bold">Anatomie technique</h2>
                 <p class="text-slate-500 text-lg">Cliquez sur une catégorie pour décomposer les spécifications techniques d'un cookie standard.</p>
             </div>
-            <div class="grid grid-cols-3 gap-3">
-                <button class="group p-5 bg-slate-50 rounded-[24px] hover:bg-slate-900 hover:text-white transition-all text-left border border-slate-100" onclick="showDetail('necessary')">
+            <div class="grid grid-cols-2 gap-3">
+                <button class="group p-5 bg-slate-50 rounded-[24px] hover:bg-slate-900 hover:text-white transition-all text-left border border-slate-100" onclick="showDetail('Necessaire')">
                     <span class="material-symbols-outlined mb-3 block text-amber-500 group-hover:text-amber-400">security</span>
-                    <span class="font-bold text-sm">Nécessaire</span>
+                    <span class="font-bold text-sm cookie_category Necessaire transition-opacity duration-500 ease-in-out">Strictement Necessaire</span>
                 </button>
-                <button class="group p-5 bg-slate-50 rounded-[24px] hover:bg-slate-900 hover:text-white transition-all text-left border border-slate-100" onclick="showDetail('analytics')">
+                <button class="group p-5 bg-slate-50 rounded-[24px] hover:bg-slate-900 hover:text-white transition-all text-left border border-slate-100" onclick="showDetail('Statistic')">
                     <span class="material-symbols-outlined mb-3 block text-blue-500 group-hover:text-blue-400">insights</span>
-                    <span class="font-bold text-sm">Analytiques</span>
+                    <span class="font-bold text-sm cookie_category Statistic transition-opacity duration-500 ease-in-out">Analytique</span>
+                </button>
+                <button class="group p-5 bg-slate-50 rounded-[24px] hover:bg-slate-900 hover:text-white transition-all text-left border border-slate-100" onclick="showDetail('preferences')">
+                    <span class="material-symbols-outlined mb-3 block text-rose-500 group-hover:text-rose-400">settings</span>
+                    <span class="font-bold text-sm cookie_category Preference transition-opacity duration-500 ease-in-out">Functionnel</span>
                 </button>
                 <button class="group p-5 bg-slate-50 rounded-[24px] hover:bg-slate-900 hover:text-white transition-all text-left border border-slate-100" onclick="showDetail('marketing')">
-                    <span class="material-symbols-outlined mb-3 block text-rose-500 group-hover:text-rose-400">campaign</span>
-                    <span class="font-bold text-sm">Marketing</span>
-                </button>
-                <button class="group p-5 bg-slate-50 rounded-[24px] hover:bg-slate-900 hover:text-white transition-all text-left border border-slate-100" onclick="showDetail('setting')">
-                    <span class="material-symbols-outlined mb-3 block text-emerald-500 group-hover:text-emerald-400">settings</span>
-                    <span class="font-bold text-sm">Réglages</span>
-                </button>
-                <button class="group p-5 bg-slate-50 rounded-[24px] hover:bg-slate-900 hover:text-white transition-all text-left border border-slate-100" onclick="showDetail('social')">
-                    <span class="material-symbols-outlined mb-3 block text-indigo-500 group-hover:text-indigo-400">share</span>
-                    <span class="font-bold text-sm">Réseaux</span>
-                </button>
-                <button class="group p-5 bg-slate-50 rounded-[24px] hover:bg-slate-900 hover:text-white transition-all text-left border border-slate-100" onclick="showDetail('security')">
-                    <span class="material-symbols-outlined mb-3 block text-cyan-500 group-hover:text-cyan-400">verified_user</span>
-                    <span class="font-bold text-sm">Sécurité</span>
+                    <span class="material-symbols-outlined mb-3 block text-emerald-500 group-hover:text-emerald-400">campaign</span>
+                    <span class="font-bold text-sm cookie_category Marketing transition-opacity duration-500 ease-in-out">Marketing</span>
                 </button>
             </div>
         </div>
@@ -241,36 +280,33 @@
                     </div>
                     <h3 class="text-3xl font-display font-bold">Détails Techniques</h3>
                 </div>
+                <div>
+                    <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-2">Définition</p>
+                    <p class="text-lg font-medium text-slate-100 def"></p>
+                </div>
                 <div class="grid grid-cols-2 gap-y-8 gap-x-12">
                     <div>
-                        <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-2">Finalité</p>
-                        <p class="text-lg font-medium text-slate-100" id="det-finalite">Comprendre le comportement utilisateur</p>
+                        <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-2">Utilité</p>
+                        <p class="text-lg font-medium text-slate-100" id="det-utility"></p>
                     </div>
                     <div>
-                        <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-2">Type</p>
-                        <p class="text-lg font-medium text-slate-100" id="det-type">Analytique de tiers</p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-2">Données stockées</p>
-                        <p class="text-lg font-medium text-slate-100" id="det-donnees">Pages vues, Source de trafic</p>
+                        <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-2">Exemple de données stockées</p>
+                        <p class="text-lg font-medium text-slate-100" id="det-donnees"></p>
                     </div>
                     <div>
                         <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-2">Durée</p>
-                        <p class="text-lg font-medium text-slate-100" id="det-duree">13 mois</p>
+                        <p class="text-lg font-medium text-slate-100" id="det-duree"></p>
                     </div>
+
                     <div>
-                        <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-2">Stockage</p>
-                        <p class="text-lg font-medium text-slate-100" id="det-stockage">Local &amp; Cloud</p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-2">Impact Vie Privée</p>
-                        <p class="text-lg font-medium text-slate-100" id="det-impact">Modéré</p>
+                        <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-2">Origine</p>
+                        <p class="text-lg font-medium text-slate-100" id="det-origine"></p>
                     </div>
                 </div>
                 <div class="pt-10 border-t border-white/10 mt-10">
                     <div class="flex items-center justify-between">
                         <span class="text-sm font-bold text-slate-400">Consentement Requis :</span>
-                        <span class="px-4 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30" id="det-consentement">OUI</span>
+                        <span class="px-4 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30" id="det-consentement"></span>
                     </div>
                 </div>
             </div>
@@ -341,6 +377,26 @@
 </footer>
 </main>
 
+
+<script>
+    const modal = document.getElementById('modal-overlay');
+
+    function toggleModal(show) {
+        if (show) {
+            modal.classList.remove('hidden');
+            // Petit délai pour l'animation d'entrée si souhaité
+        } else {
+            modal.classList.add('hidden');
+        }
+    }
+
+    // Fermer si on clique sur l'overlay (en dehors de la boîte)
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            toggleModal(false);
+        }
+    }
+</script>
 
 </body>
 </html>
