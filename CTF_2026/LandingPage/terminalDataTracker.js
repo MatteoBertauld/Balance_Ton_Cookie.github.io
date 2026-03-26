@@ -1,3 +1,8 @@
+// ndt
+// Ne pas partager l'address ip à GPT ni aucune donnée identifiable
+
+
+
 const fetchUserData = async () => {
     // 1. Récupération du niveau de batterie (API Battery Status)
     let batteryLevel = "Erreur inconnue";
@@ -13,6 +18,9 @@ const fetchUserData = async () => {
         batteryLevel = "Information bloquée par le navigateur";
     }
 
+    
+
+
     // 2. Récupération de la connexion (Vitesse estimée)
     const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     const connectionType = conn ? `${conn.effectiveType} (~${conn.downlink} Mbps)` : "Information bloquée par le navigateur";
@@ -20,12 +28,23 @@ const fetchUserData = async () => {
     // 3. Mémoire vive (RAM)
     const ram = navigator.deviceMemory ? `${navigator.deviceMemory} GB` : "Information bloquée par le navigateur";
 
+
+    const hasRead_cookie = localStorage.getItem('read_cookie') === 'true';
+    const hasRead_confidentialite = localStorage.getItem('read_confidentialite') === 'true';
+    const hasRead_mention_legale = localStorage.getItem('read_mention_legale') === 'true';
+
+
     const data = {
         // Identité & Localisation sommaire
         USER_ID: getSimpleClientId(),
-        IP: "192.168.1.XX (SIMULATED)",
+        IP: await GetIP(),
+        
         LANG: navigator.language,
         TIMEZONE: Intl.DateTimeFormat().resolvedOptions().timeZone,
+
+        COUPURE_INTERNET: reconnectCount,
+        RECONNECTION: refreshCount,
+        PAGE_VIEWS: tabSwitchCount,
         
         // Système & Hardware
         OS: getOSName(), 
@@ -36,6 +55,13 @@ const fetchUserData = async () => {
         BROWSER: getBrowserName(),
 
         AD_BLOCK: await detectAdBlockerTruePositive(),
+
+        SESSIONCLICK: sessionClicks,
+        GLOBALCLICK: totalClicks,
+
+        READ_MENTION_LEGALE: hasRead_mention_legale ? "Oui" : "Non",
+        READ_CONFIDENTIALITE: hasRead_confidentialite ? "Oui" : "Non",
+        READ_COOKIE: hasRead_cookie ? "Oui" : "Non",
 
                 
         // État de l'appareil
@@ -54,6 +80,15 @@ const fetchUserData = async () => {
 
     renderTerminal(data);
 };
+
+
+
+const GetIP = async () => {
+    const response = await fetch('https://api.ipify.org?format=json');
+    const data = await response.json();
+    return data.ip;
+};
+
 
 const getOSName = () => {
     const ua = navigator.userAgent;
@@ -197,24 +232,101 @@ async function detectAdBlockerTruePositive() {
 }
 
 
-let totalTime = 0;
-let startTime = Date.now();
+let tabSwitchCount = 0;
+
+let totalTimeActif = parseInt(localStorage.getItem('total_time_actif')) || 0;;
+let LastTimeActif = Date.now();
+
+let totalTime = parseInt(localStorage.getItem('total_time')) || 0;;
+let FirstStartTime = Date.now();
+
 
 // Fonction pour mettre à jour le temps accumulé
-function updateTime() {
+function updateActifTime() {
+    
     if (document.visibilityState === 'visible') {
-        // On réinitialise le point de départ quand l'utilisateur revient
-        startTime = Date.now();
-    } else {
-        // On ajoute la durée de la session active avant que l'onglet ne soit caché
-        totalTime += (Date.now() - startTime);
+        tabSwitchCount++;
+        const tabSwitchCountDisplay = document.getElementById('tab_switch_count');
+        tabSwitchCountDisplay.innerText = tabSwitchCount;
     }
-    console.log(`Temps total passé : ${totalTime} secondes`);
+}
+// Écouter les changements de visibilité (changement d'onglet, réduction de fenêtre)
+document.addEventListener('visibilitychange', updateActifTime);
+
+
+function convertTimetoString(Time){
+
+    // Conversion en secondes totales
+    const totalSeconds = Math.floor(Time / 1000);
+
+    // Calcul des minutes et des secondes restantes
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    // Formatage avec "padStart" pour avoir toujours deux chiffres (ex: 05 au lieu de 5)
+    const minStr = String(minutes).padStart(2, '0');
+    const secStr = String(seconds).padStart(2, '0');
+
+    return `${minStr}:${secStr}`;
 }
 
-// Écouter les changements de visibilité (changement d'onglet, réduction de fenêtre)
-document.addEventListener('visibilitychange', updateTime);
+function updateTime() {
+    totalTime += 1000;
+    localStorage.setItem('total_time', totalTime);
 
+    if (document.visibilityState === 'visible') {
+        totalTimeActif += 1000;
+        localStorage.setItem('total_time_actif', totalTimeActif);
+    } 
+    const timeActifDisplay = document.getElementById('id_time');
+    timeActifDisplay.innerText = convertTimetoString(totalTimeActif) + " (Total : " + convertTimetoString(totalTime) + ")";
+}
+
+const intervalID = setInterval(() => {
+    updateTime();
+}, 1000);
+
+
+
+
+
+let refreshCount = parseInt(localStorage.getItem('refresh_count')) || 0;
+let reconnectCount = parseInt(localStorage.getItem('reconnect_count')) || 0;
+
+// --- 2. DÉTECTION DE L'ACTUALISATION (F5 / REFRESH) ---
+const navEntries = performance.getEntriesByType("navigation");
+if (navEntries.length > 0 && navEntries[0].type === "reload") {
+    refreshCount++;
+    localStorage.setItem('refresh_count', refreshCount);
+}
+
+// --- 3. DÉTECTION DU RETOUR D'INTERNET (ONLINE) ---
+window.addEventListener('online', () => {
+    reconnectCount++;
+    localStorage.setItem('reconnect_count', reconnectCount);
+    console.log(`[NETWORK] Connexion rétablie. Total : ${reconnectCount}`);
+});
+
+
+// Initialisation des compteurs
+let sessionClicks = 0; // Clics depuis l'ouverture de l'onglet
+let totalClicks = parseInt(localStorage.getItem('global_click_count')) || 0; // Clics historiques
+
+// Écouteur global sur toute la fenêtre
+window.addEventListener('click', () => {
+    sessionClicks++;
+    totalClicks++;
+    
+    // Sauvegarde immédiate dans le localStorage
+    localStorage.setItem('global_click_count', totalClicks);
+
+    const clickDisplay = document.getElementById('nombre-clicks');
+    if (clickDisplay) {
+        clickDisplay.innerText = `${sessionClicks} (Total: ${totalClicks})`;
+    }
+    
+    console.log(`[USER_ACTION] Clic détecté. Session: ${sessionClicks} | Global: ${totalClicks}`);
+});
 
 
 const renderTerminal = (data) => {
@@ -223,27 +335,46 @@ const renderTerminal = (data) => {
     // Organisation par catégories
     const categories = [
         {
-            title: "Général",
+            title: "Utilisateur",
             items: [
-                { label: "ID utilisateur", value: data.USER_ID },
-                { label: "Adresse IP", value: data.IP },
-                { label: "Localisation", value: data.TIMEZONE },
-                { label: "Système (OS)", value: data.OS },
-                { label: "Navigateur", value: data.BROWSER },
-                { label: "Résolution", value: data.RES },
-                { label: "Suivi DNT", value: data.DNT }
+                { id:"user-id",label: "ID utilisateur", value: data.USER_ID },
+                { id:"ip-address", label: "Adresse IP", value: data.IP },
+                { id:"location", label: "Localisation", value: data.TIMEZONE },
+            ],
+        },
+        {
+            title: "Navigateur",
+            items: [
+                { id:"os", label: "Système (OS)", value: data.OS },
+                { id:"browser", label: "Navigateur", value: data.BROWSER },
+                { id:"resolution", label: "Résolution", value: data.RES },
+                { id:"dnt-tracking", label: "Suivi DNT", value: data.DNT },
+                { id:"adblock", label: "Bloqueur de pub", value: data.AD_BLOCK },
             ]
         },
         {
             title: "Informations Machine",
             items: [
-                { label: "Réseau", value: data.CONNECTION },
-                { label: "Processeur", value: data.CORES + " Coeurs" },
-                { label: "Mémoire RAM", value: data.RAM },
-                { label: "Carte Graphique", value: data.GPU_2 },
-                { label: "Batterie", value: data.BATTERY }
+                { id:"network", label: "Réseau", value: data.CONNECTION },
+                { id:"cpu", label: "Processeur", value: data.CORES + " Coeurs" },
+                { id:"ram", label: "Mémoire RAM", value: data.RAM },
+                { id:"gpu", label: "Carte Graphique", value: data.GPU_2 },
+                { id:"battery", label: "Batterie", value: data.BATTERY }
             ]
-        }
+        },
+        {
+            title: "Statistiques de navigation",
+            items: [
+                { id:"id_time", label: "Temps total (session, global)", value: "0 (Total : 0)" },
+                { id:"tab_switch_count", label: "Nombre de changement de page", value: data.PAGE_VIEWS },
+                { id:"reconnections", label: "Nombre de reconnexions", value: data.RECONNECTION },
+                { id:"coupure-internet", label: "Nombre de coupures d'internet", value: data.COUPURE_INTERNET },
+                { id:"nombre-clicks", label: "Nombre de clics (session, global)", value: data.SESSIONCLICK + " (Total: " + data.GLOBALCLICK + ")" },
+                { id:"read_mention_legale", label: "Mentions Légales", value: data.READ_MENTION_LEGALE },
+                { id:"read_confidentialite", label: "Confidentialité", value: data.READ_CONFIDENTIALITE },
+                { id:"read_cookie", label: "Cookies", value: data.READ_COOKIE },
+            ],
+        },
     ];
 
     //<div class="animate-pulse text-brand mb-6 font-bold uppercase tracking-widest text-[10px]">[SYSTEM_SCAN_COMPLETE] Empreinte générée...</div>
@@ -258,7 +389,7 @@ const renderTerminal = (data) => {
                         ${cat.items.map(item => `
                             <li class="flex justify-between border-b border-stroke/10 pb-1">
                                 <span class="text-txt-muted">${item.label}:</span>
-                                <span class="text-brand text-right ml-4 font-medium">${item.value}</span>
+                                <span id="${item.id}" class="text-brand text-right ml-4 font-medium">${item.value}</span>
                             </li>
                         `).join('')}
                     </ul>
@@ -268,8 +399,9 @@ const renderTerminal = (data) => {
 
         <div class="mt-8 p-3 bg-brand/5 border border-brand/20 rounded text-[10px] text-brand/70 italic font-data leading-relaxed">
             <span class="font-bold uppercase block mb-1">Avertissement :</span>
-            Toutes ces données machine sont accessibles sans votre consentement via des scripts de "fingerprinting" publicitaires.
+            Si les lois (RGPD,Loi 25) impose un consentement explicite pour exploiter ces métadonnées, la réalité technique est plus sombre : de nombreux sites collectent ces signaux en silence, hors de tout cadre légal. [Plongez dans l'abîme] pour découvrir l'envers du décor.
         </div>
     `;
 };
 document.addEventListener('DOMContentLoaded', fetchUserData);
+

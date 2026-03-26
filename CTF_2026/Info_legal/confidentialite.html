@@ -1,0 +1,36 @@
+<body class="bg-[var(--surface)] text-[var(--on-surface)] font-sans pt-24">
+    <main class="max-w-4xl mx-auto px-6 pb-20">
+        <h1 class="text-3xl font-bold text-[var(--primary)] uppercase tracking-tighter mb-8 border-b border-[var(--outline-variant)] pb-2">
+            [02] Confidentialité des Données
+        </h1>
+        
+        <div class="bg-[var(--surface-container-high)] p-6 border-l-4 border-[var(--primary)] mb-8">
+            <p class="text-xs italic font-mono">
+                "Paradoxe détecté : Nous affichons vos données pour vous prouver que nous n'avons pas besoin de votre permission pour les voir, mais nous ne les stockons jamais sur nos serveurs."
+            </p>
+        </div>
+
+        <div class="space-y-8 text-sm text-[var(--on-surface-variant)]">
+            <section>
+                <h3 class="text-[var(--primary)] font-bold mb-2 uppercase text-xs tracking-widest">// Nature des données traitées</h3>
+                <p>Dans le cadre de cette démonstration, les données suivantes sont extraites de votre navigateur :</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li>Empreinte matérielle (CPU, RAM, GPU, Batterie)</li>
+                    <li>Données de navigation (Pages vues, clics, temps actif)</li>
+                    <li>Adresse IP et géolocalisation approximative</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3 class="text-[var(--primary)] font-bold mb-2 uppercase text-xs tracking-widest">// Finalité du traitement</h3>
+                <p>Ces données sont utilisées <strong>uniquement</strong> pour un affichage en temps réel sur votre écran à des fins pédagogiques. Aucune donnée n'est revendue à des tiers ou utilisée pour du profilage publicitaire par cet éditeur.</p>
+            </section>
+
+            <section>
+                <h3 class="text-[var(--primary)] font-bold mb-2 uppercase text-xs tracking-widest">// Durée de conservation</h3>
+                <p>Les données comportementales (clics, refresh) sont stockées dans votre propre navigateur via <code>LocalStorage</code>. Vous pouvez les effacer à tout moment en vidant votre cache.</p>
+            </section>
+        </div>
+    </main>
+</body>
+<script src="confidentialite.js"></script>

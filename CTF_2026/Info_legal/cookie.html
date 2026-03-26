@@ -1,0 +1,48 @@
+<body class="bg-[var(--surface)] text-[var(--on-surface)] font-sans pt-24">
+    <main class="max-w-4xl mx-auto px-6 pb-20">
+        <h1 class="text-3xl font-bold text-[var(--primary)] uppercase tracking-tighter mb-8 border-b border-[var(--outline-variant)] pb-2">
+            [03] Gestion des Traceurs
+        </h1>
+        
+        <div class="space-y-8 text-sm text-[var(--on-surface-variant)]">
+            <section>
+                <h3 class="text-[var(--primary)] font-bold mb-2 uppercase text-xs tracking-widest">// Qu'est-ce qu'un cookie ?</h3>
+                <p>Un cookie est un petit fichier texte déposé sur votre terminal lors de la visite d'un site. Il permet de vous "reconnaître" lors de vos prochaines visites.</p>
+            </section>
+
+            <section>
+                <h3 class="text-[var(--primary)] font-bold mb-4 uppercase text-xs tracking-widest">// Cookies utilisés sur ce site</h3>
+                <table class="w-full border-collapse border border-[var(--outline-variant)] text-left">
+                    <thead>
+                        <tr class="bg-[var(--surface-container-high)] text-[var(--primary)] text-[10px] uppercase">
+                            <th class="p-3 border border-[var(--outline-variant)]">Nom</th>
+                            <th class="p-3 border border-[var(--outline-variant)]">Type</th>
+                            <th class="p-3 border border-[var(--outline-variant)]">Durée</th>
+                            <th class="p-3 border border-[var(--outline-variant)]">Utilité</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-[11px] font-mono">
+                        <tr>
+                            <td class="p-3 border border-[var(--outline-variant)] text-[var(--primary)]">traceur_id</td>
+                            <td class="p-3 border border-[var(--outline-variant)]">Persistant</td>
+                            <td class="p-3 border border-[var(--outline-variant)]">1 an</td>
+                            <td class="p-3 border border-[var(--outline-variant)]">Simuler un identifiant publicitaire unique.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 border border-[var(--outline-variant)] text-[var(--primary)]">session_id</td>
+                            <td class="p-3 border border-[var(--outline-variant)]">Session</td>
+                            <td class="p-3 border border-[var(--outline-variant)]">Fermeture</td>
+                            <td class="p-3 border border-[var(--outline-variant)]">Maintenir l'état du scan actuel.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h3 class="text-[var(--primary)] font-bold mb-2 uppercase text-xs tracking-widest">// Comment supprimer vos traces ?</h3>
+                <p>Vous pouvez refuser ou supprimer les cookies via les réglages de votre navigateur. Pour ce site, supprimer vos cookies réinitialisera votre identifiant de "Traceur".</p>
+            </section>
+        </div>
+    </main>
+</body>
+<script src="cookie.js"></script>

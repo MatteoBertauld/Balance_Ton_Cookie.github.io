@@ -9,9 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     
-    <link rel="stylesheet" href="NouvelleVersion/LandingPage/index.css">
-    <link rel="stylesheet" href="NouvelleVersion/theme.css">
-    <script src="NouvelleVersion/configTailwind.js" defer></script>
+    <link rel="stylesheet" href="CTF_2026/LandingPage/index.css">
+    <link rel="stylesheet" href="CTF_2026/theme.css">
+    <script src="CTF_2026/configTailwind.js" defer></script>
 
 </head>
 
@@ -31,7 +31,7 @@
                     Chaque clic, chaque mouvement, chaque seconde passée en ligne alimente une archive invisible. Nous avons déjà récupéré les vôtres.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-4">
-                    <a class="glow-cta px-8 py-4 text-on-primary font-extrabold uppercase tracking-widest active:scale-95 transition-transform" href="NouvelleVersion/Simulation/experience.html">
+                    <a class="glow-cta px-8 py-4 text-on-primary font-extrabold uppercase tracking-widest active:scale-95 transition-transform" href="CTF_2026/Simulation/experience.html">
                         Plonger dans les abîmes
                     </a>
                     <a class="border-b-2 border-primary text-primary px-8 py-4 font-bold uppercase tracking-widest hover:bg-surface-container-high transition-colors" href="#section2">
@@ -75,8 +75,28 @@
             </div>
         </div>
     </section>
+    <footer class="w-full py-4 px-6 bg-slate-950 border-t border-white/10 font-data">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest">
+            
+            <div class="flex items-center gap-4">
+                <a class="font-bold text-cyan-400" href="index.html">Balance tes données</a>
+                <span class="text-slate-600">© 2026</span>
+            </div>
 
-    <script src="NouvelleVersion/LandingPage/index.js"></script>
-    <script src="NouvelleVersion/LandingPage/terminalDataTracker.js"></script>
+            <ul class="flex gap-6 text-slate-400">
+                <li><a href="CTF_2026/Info_legal/mentionLegale.html" class="hover:text-cyan-400 transition-colors">Mentions légales</a></li>
+                <li><a href="CTF_2026/Info_legal/confidentialite.html" class="hover:text-cyan-400 transition-colors">Confidentialité</a></li>
+                <li><a href="CTF_2026/Info_legal/cookie.html" class="hover:text-cyan-400 transition-colors">Cookies</a></li>
+            </ul>
+
+            <div class="hidden md:block text-slate-500 italic lowercase">
+                vos données sont précieuses, reprenez le contrôle.
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="CTF_2026/LandingPage/index.js"></script>
+    <script src="CTF_2026/LandingPage/terminalDataTracker.js"></script>
 </body>
 </html>
