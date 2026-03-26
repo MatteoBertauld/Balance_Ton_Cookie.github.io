@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Balance tes données - Terminal Authority</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../theme.css">
+    <script src="../configTailwind.js" defer></script>
+
+</head>
+
+<body class="bg-surface selection:bg-primary selection:text-on-primary">
+
+    <header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-slate-950/60 backdrop-blur-md">
+        <a class="text-xl font-bold tracking-tighter text-cyan-400 uppercase" href="../LandingPage/index.html">Balance tes données</a>
+    </header>
+
+    <section  id="section1">
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
+            <div class="space-y-8">
+                <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-none text-on-surface">
+                    BALANCE <span class="text-primary"><br>TES DONNÉES</span>
+                </h1>
+                <p class="text-on-surface-variant text-lg max-w-xl leading-relaxed">
+                    Chaque clic, chaque mouvement, chaque seconde passée en ligne alimente une archive invisible. Nous avons déjà récupéré les vôtres.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a class="glow-cta px-8 py-4 text-on-primary font-extrabold uppercase tracking-widest active:scale-95 transition-transform" href="../Simulation/experience.html">
+                        Plonger dans les abîmes
+                    </a>
+                    <a class="border-b-2 border-primary text-primary px-8 py-4 font-bold uppercase tracking-widest hover:bg-surface-container-high transition-colors" href="#section2">
+                        En savoir plus
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative group">
+                <div class="bg-surface-container-lowest border border-outline-variant/30 p-1 shadow-2xl">
+                    <div class="bg-surface-container-high px-4 py-2 flex justify-between items-center">
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 bg-red-500"></div>
+                            <div class="w-3 h-3 bg-yellow-500"></div>
+                            <div class="w-3 h-3 bg-green-500"></div>
+                        </div>
+                    </div>
+                    <div id="terminal-content" class="p-6 font-data text-sm space-y-4 max-h-[80vh] overflow-y-auto no-scrollbar"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section2">
+        <div class="container mx-auto px-6">
+            <div class="mb-16">
+                <h2 class="text-5xl font-black tracking-tighter uppercase mb-4 text-on-surface">L'Envers du <span class="text-primary">Décor</span></h2>
+                <div class="h-1 w-24 bg-primary"></div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-0 border border-outline-variant/20">
+                <div class="lg:col-span-4 bg-surface-container-high border-r border-outline-variant/20">
+                    <div class="flex flex-col h-full" id="menu-container">
+                        <button class="menu-btn active" data-content="qui">Qui suis-je ?</button>
+                        <button class="menu-btn" data-content="projet">Qu’est-ce que le projet...</button>
+                        <button class="menu-btn" data-content="cred">Crédibilité</button>
+                        <button class="menu-btn" data-content="use">Usage des données</button>
+                    </div>
+                </div>
+                <div class="lg:col-span-8 bg-surface-container-low p-12 lg:p-20 relative min-h-[500px]" id="content-display">
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="index.js"></script>
+    <script src="terminalDataTracker.js"></script>
+</body>
+</html>

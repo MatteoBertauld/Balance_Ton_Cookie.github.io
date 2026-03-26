@@ -1,0 +1,50 @@
+/* Configuration Tailwind Inline via CSS Variables */
+:root {
+    --primary: #8aebff;                /* Cyan brillant pour les accents et les données */
+    --on-primary: #00363e;             /* Texte sombre sur fond cyan */
+    --surface: #0c1324;                /* Bleu nuit très sombre pour le fond principal */
+    --surface-container-high: #23293c; /* Gris-bleu pour les cartes et éléments soulevés */
+    --on-surface: #dce1fb;             /* Texte clair pour une lecture reposante */
+    --on-surface-variant: #bbc9cd;     /* Texte secondaire (gris) pour moins d'emphase */
+    --outline-variant: #3c494c;        /* Couleur des bordures discrètes */
+}
+
+/* Configuration de la police de base pour tout le document */
+body {
+    background-color: var(--surface);
+    color: var(--on-surface);
+    font-family: "Inter", sans-serif; /* Police moderne et lisible */
+    margin: 0;
+}
+
+/* Classe spécifique pour l'aspect "Terminal / Code" */
+.font-mono-tech {
+    /* Utilise Space Grotesk avec une chasse fixe pour l'aspect informatique */
+    font-family: "Space Grotesk", monospace; 
+}
+
+
+section {
+  /* Flexbox & centrage */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Taille & Couleurs */
+  height: 100vh;
+  padding-top: 3rem;
+  background-color: #020617; /* slate-950 */
+  color: #e2e8f0;            /* slate-200 */
+  
+  /* Espacement (Mobile par défaut) */
+  padding-left: 2.5rem;      /* px-10 (10 * 0.25rem) */
+  padding-right: 2.5rem;
+}
+
+/* Media Query pour le 'md:' (Tablettes et +) */
+@media (min-width: 768px) {
+  .section-v {
+    padding-left: 5rem;      /* px-20 (20 * 0.25rem) */
+    padding-right: 5rem;
+  }
+}
