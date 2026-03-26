@@ -93,3 +93,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+async function detectAdBlockerAdvanced() {
+  let adBlockDetected = false;
+
+  // MÉTHODE 1 : L'appel réseau (très efficace)
+  // On tente de récupérer un script qui n'existe pas, mais dont le NOM est banni
+  const googleAdsUrl = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+  
+  try {
+    const response = await fetch(new Request(googleAdsUrl), {
+      method: 'HEAD', // On ne télécharge pas le fichier, on vérifie juste l'accès
+      mode: 'no-cors'
+    });
+    // Si on arrive ici, l'appel n'a pas été bloqué par le navigateur
+  } catch (error) {
+    // Les bloqueurs interceptent la requête et génèrent une erreur type "Network Error"
+    adBlockDetected = true;
+  }
+
+  // MÉTHODE 2 : Leurre visuel amélioré (si la méthode 1 échoue)
+  if (!adBlockDetected) {
+    const bait = document.createElement('div');
+    // On utilise des classes et du texte qui forcent le bloqueur à réagir
+    bait.className = 'pub_300x250 pub_300x250m pub_728x90 text-ad ad-text text-ads-container';
+    bait.setAttribute('style', 'width: 1px !important; height: 1px !important; position: absolute !important; left: -10000px !important; top: -1000px !important;');
+    bait.innerHTML = 'ADS BY GOOGLE'; // Certains bloqueurs scannent le contenu
+    
+    document.body.appendChild(bait);
+    
+    // On attend un peu plus longtemps (le temps du rendu)
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+    const style = window.getComputedStyle(bait);
+    if (style.display === 'none' || style.visibility === 'hidden' || bait.offsetParent === null) {
+      adBlockDetected = true;
+    }
+    document.body.removeChild(bait);
+  }
+
+  return adBlockDetected;
+}
+
+// Test
+detectAdBlockerAdvanced().then(isBlocked => {
+  console.log(isBlocked ? "🔴 Bloqueur détecté" : "🟢 Aucun bloqueur");
+});
