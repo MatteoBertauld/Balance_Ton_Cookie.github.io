@@ -102,8 +102,8 @@ const fetchUserData = async () => {
                 { id: "analyse_user", label: "Analyse user", value: values.profile, category: "statistique", duration: "13 mois", description: "Profilage comportemental." },
                 { id: "id_time", label: "Temps total", value: "0 (Total : 0)", category: "statistique", duration: "13 mois", description: "Durée de présence." },
                 { id: "tab_switch_count", label: "Nombre de changement de page", value: values.pViews, category: "statistique", duration: "Session", description: "Nombre de pages consultées." },
-                { id: "reconnections", label: "Reconnexions", value: values.recons, category: "necessaire", duration: "Session", description: "Rafraîchissements page." },
-                { id: "coupure-internet", label: "Coupures", value: values.cuts, category: "necessaire", duration: "Session", description: "Pertes de signal réseau." },
+                { id: "reconnections", label: "Reconnexions", value: values.recons, category: "statistique", duration: "Session", description: "Rafraîchissements page." },
+                { id: "coupure-internet", label: "Coupures", value: values.cuts, category: "statistique", duration: "Session", description: "Pertes de signal réseau." },
                 { id: "nombre-clicks", label: "Clics", value: `${values.sClick} (Total: ${values.gClick})`, category: "statistique", duration: "13 mois", description: "Interactions souris." }
             ]
         },

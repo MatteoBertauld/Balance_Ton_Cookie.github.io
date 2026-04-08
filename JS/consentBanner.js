@@ -2,11 +2,12 @@
 function createCookieRow(cookie) {
     // Configuration pour Dark Mode (Fonds sombres, bordures subtiles)
     const backgroundColors = {
-        'necessaire': 'bg-slate-900/40 border-slate-800',
-        'statistique': 'bg-amber-900/20 border-amber-900/30', 
-        'preference': 'bg-purple-900/20 border-purple-900/30',
-        'marketing': 'bg-red-900/20 border-red-900/30',
+        'necessaire': 'bg-slate-900/20 border-slate-800',
+        'statistique': 'bg-amber-600/40 border-amber-900/30', 
+        'preference': 'bg-purple-600/40 border-purple-900/30',
+        'marketing': 'bg-red-600/40 border-red-900/30',
     };
+
 
     // Couleurs d'impact vibrantes pour ressortir sur le sombre
     const impactColors = {
@@ -17,7 +18,7 @@ function createCookieRow(cookie) {
         'Maximum': 'red'
     };
 
-    const bgColorClass = backgroundColors[cookie.category] || 'bg-zinc-900 border-zinc-800';
+    const bgColorClass = backgroundColors[cookie.category];
     const color = impactColors[cookie.impact] || 'slate';
     const initial = cookie.id ? cookie.id.charAt(0).toUpperCase() : 'O';
 
