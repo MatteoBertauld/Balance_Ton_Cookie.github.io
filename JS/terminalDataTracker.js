@@ -101,7 +101,7 @@ const fetchUserData = async () => {
             items: [
                 { id: "analyse_user", label: "Analyse user", value: values.profile, category: "statistique", duration: "13 mois", description: "Profilage comportemental." },
                 { id: "id_time", label: "Temps total", value: "0 (Total : 0)", category: "statistique", duration: "13 mois", description: "Durée de présence." },
-                { id: "tab_switch_count", label: "Vues pages", value: values.pViews, category: "statistique", duration: "Session", description: "Nombre de pages consultées." },
+                { id: "tab_switch_count", label: "Nombre de changement de page", value: values.pViews, category: "statistique", duration: "Session", description: "Nombre de pages consultées." },
                 { id: "reconnections", label: "Reconnexions", value: values.recons, category: "necessaire", duration: "Session", description: "Rafraîchissements page." },
                 { id: "coupure-internet", label: "Coupures", value: values.cuts, category: "necessaire", duration: "Session", description: "Pertes de signal réseau." },
                 { id: "nombre-clicks", label: "Clics", value: `${values.sClick} (Total: ${values.gClick})`, category: "statistique", duration: "13 mois", description: "Interactions souris." }
@@ -110,9 +110,9 @@ const fetchUserData = async () => {
         {
             title: "Légal & Consentement",
             items: [
-                { id: "c_stat", label: "Consent. Stat", value: values.cStat, category: "necessaire", duration: "6 mois", description: "Accord pour les statistiques." },
-                { id: "c_fonc", label: "Consent. Fonc", value: values.cFonc, category: "necessaire", duration: "6 mois", description: "Accord pour les fonctions." },
-                { id: "c_mark", label: "Consent. Mark", value: values.cMark, category: "necessaire", duration: "6 mois", description: "Accord pour le marketing." },
+                { id: "c_stat", label: "Consentement Cookie Statistique", value: values.cStat, category: "necessaire", duration: "6 mois", description: "Accord pour les statistiques." },
+                { id: "c_fonc", label: "Consentement Cookie Préférentiel", value: values.cFonc, category: "necessaire", duration: "6 mois", description: "Accord pour les fonctions." },
+                { id: "c_mark", label: "Consentement Cookie Marketing", value: values.cMark, category: "necessaire", duration: "6 mois", description: "Accord pour le marketing." },
             ]
         }
     ];

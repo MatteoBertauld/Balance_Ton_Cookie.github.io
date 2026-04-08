@@ -31,20 +31,30 @@ section {
   justify-content: center;
   
   /* Taille & Couleurs */
-  height: 100vh;
-  padding-top: 3rem;
-  background-color: #020617; /* slate-950 */
-  color: #e2e8f0;            /* slate-200 */
+  /* min-height permet à la section de s'agrandir si le contenu dépasse */
+  min-height: 100vh; 
+  
+  /* Utilisation de dvh (Dynamic Viewport Height) pour corriger le bug 
+     de la barre d'adresse sur mobile */
+  min-height: 100dvh; 
+
+  padding-top: 5rem;    /* Augmenté pour ne pas être collé au header mobile */
+  padding-bottom: 2rem; /* Ajout d'un padding bas pour respirer sur mobile */
+  
+  background-color: #020617; 
+  color: #e2e8f0; 
   
   /* Espacement (Mobile par défaut) */
-  padding-left: 2.5rem;      /* px-10 (10 * 0.25rem) */
-  padding-right: 2.5rem;
+  padding-left: 1.5rem;  /* Réduit sur mobile pour gagner de la place (px-6) */
+  padding-right: 1.5rem;
 }
 
 /* Media Query pour le 'md:' (Tablettes et +) */
 @media (min-width: 768px) {
-  .section-v {
-    padding-left: 5rem;      /* px-20 (20 * 0.25rem) */
+  section {
+    padding-top: 3rem;   /* On revient au padding initial sur desktop */
+    padding-left: 5rem;  /* px-20 */
     padding-right: 5rem;
+    height: 100vh;       /* On peut forcer le 100vh sur desktop */
   }
 }

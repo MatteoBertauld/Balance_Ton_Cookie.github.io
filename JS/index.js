@@ -1,8 +1,10 @@
 const contents = {
     qui: `
         <div class="flex items-center space-x-6 mb-8">
-            <div class="w-20 h-20 bg-primary/10 border border-primary/30 flex items-center justify-center">
-                <span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">person</span>
+            <div class="w-20 h-20 bg-primary/10 border border-primary/30 flex items-center justify-center rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(34,211,238,0.15)]">
+                <img src="image/profil.png" 
+                    alt="Profil Utilisateur" 
+                    class="w-full h-full object-cover">
             </div>
             <div>
                 <h3 class="text-3xl font-black uppercase text-on-surface">Mattéo Bertauld</h3>
@@ -26,12 +28,12 @@ const contents = {
             </p>
             <div class="p-4 bg-surface-container-high border-l-4 border-primary">
                 <p class="text-sm font-label uppercase tracking-wider text-on-surface-variant">Mission</p>
-                <p class="text-on-surface">Démystifier le tracking publicitaire et gouvernemental via une immersion visuelle brutale.</p>
+                <p class="text-on-surface">Démystifier le tracking publicitaire via une immersion visuelle brutale.</p>
             </div>
         </div>
     `,
     cred: `
-        <h3 class="text-3xl font-black uppercase text-on-surface mb-6">Inégrité des Sources</h3>
+        <h3 class="text-3xl font-black uppercase text-on-surface mb-6">Intégrité des Sources</h3>
         <div class="prose prose-invert max-w-none space-y-6">
             <p class="text-slate-300 text-lg leading-relaxed">
                 Ce dispositif de simulation est le fruit d'une synthèse rigoureuse issue de sources institutionnelles, de portails gouvernementaux de protection des données, ainsi que de publications scientifiques certifiées.
