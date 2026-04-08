@@ -1,1 +1,0 @@
-localStorage.setItem('read_mention_legale', true);

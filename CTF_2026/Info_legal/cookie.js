@@ -1,1 +1,0 @@
-localStorage.setItem('read_cookie', true);
